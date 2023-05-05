@@ -3,7 +3,7 @@
 [default]
 depends = []
 
-[default.files]
-nvim = ""
+[nvim.files]
+nvim = "~/.config/nvim"
 
 [default.variables]
