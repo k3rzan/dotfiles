@@ -46,8 +46,8 @@ require('lazy').setup(
 		},
 		{ 'vim-airline/vim-airline' },
 		{ 'vim-airline/vim-airline-themes' },
-		{ 'nvim-telescope/telescope.nvim',   tag = '0.1.1', lazy = true },
-		{ 'tpope/vim-surround',              lazy = true },
+		{ 'nvim-telescope/telescope.nvim', tag = '0.1.1', lazy = true },
+		{ 'tpope/vim-surround',            lazy = true },
 		{ 'jiangmiao/auto-pairs' },
 		{
 			'scrooloose/nerdtree',
@@ -77,13 +77,17 @@ require('lazy').setup(
 		},
 		{ 'virchau13/tree-sitter-astro', ft = "astro" },
 		{ 'airblade/vim-gitgutter' },
-		{ 'alvan/vim-closetag',             ft = { "typescriptreact", "javascriptreact", "javascript", "jsx", "tsx" } },
+		{
+			'alvan/vim-closetag',
+			ft = { "typescriptreact", "javascriptreact", "javascript", "jsx",
+				"tsx" }
+		},
 		{ 'christoomey/vim-tmux-navigator' },
-		{ 'lambdalisue/suda.vim',           lazy = true },
-		{ 'mhinz/vim-signify',              lazy = true },
-		{ 'ThePrimeagen/harpoon',           lazy = true },
+		{ 'lambdalisue/suda.vim',          lazy = true },
+		{ 'mhinz/vim-signify',             lazy = true },
+		{ 'ThePrimeagen/harpoon',          lazy = true },
 		--Godot
-		{ 'habamax/vim-godot',              ft = "gd" },
+		{ 'habamax/vim-godot',             ft = "gd" },
 		--Development
 		{
 			'MunifTanjim/prettier.nvim',
