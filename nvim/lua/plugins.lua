@@ -53,9 +53,29 @@ require('lazy').setup(
 			'scrooloose/nerdtree',
 		},
 		{ 'Yggdroot/indentLine' },
-		{ 'simrat39/rust-tools.nvim',       ft = "rs" },
-		{ 'nvim-treesitter/nvim-treesitter' },
-		{ 'virchau13/tree-sitter-astro',    ft = "astro" },
+		{ 'simrat39/rust-tools.nvim', ft = "rs" },
+		{
+			'nvim-treesitter/nvim-treesitter',
+			dependencies = {
+				'JoosepAlviste/nvim-ts-context-commentstring',
+			},
+			config = function()
+				require('nvim-treesitter.configs').setup {
+					-- Install the parsers for the languages you want to comment in
+					-- Here are the supported languages:
+					ensure_installed = {
+						'astro', 'css', 'html', 'javascript',
+						'lua', 'tsx',
+						'typescript', 'vim',
+					},
+
+					context_commentstring = {
+						enable = true,
+					},
+				}
+			end
+		},
+		{ 'virchau13/tree-sitter-astro', ft = "astro" },
 		{ 'airblade/vim-gitgutter' },
 		{ 'alvan/vim-closetag',             ft = { "typescriptreact", "javascriptreact", "javascript", "jsx", "tsx" } },
 		{ 'christoomey/vim-tmux-navigator' },
