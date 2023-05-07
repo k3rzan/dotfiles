@@ -35,6 +35,15 @@ require('lazy').setup(
 		{ 'nvim-lua/plenary.nvim',           lazy = true },
 		{ 'jose-elias-alvarez/null-ls.nvim', lazy = true },
 		--IDE
+		{
+			'numToStr/Comment.nvim',
+			config = function()
+				require('Comment').setup {
+					pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+					mappings = false
+				}
+			end
+		},
 		{ 'vim-airline/vim-airline' },
 		{ 'vim-airline/vim-airline-themes' },
 		{ 'nvim-telescope/telescope.nvim',   tag = '0.1.1', lazy = true },
