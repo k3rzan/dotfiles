@@ -26,7 +26,7 @@ require('lazy').setup(
 			config = function()
 				--colorscheme
 				require('onedark').setup({
-					style = 'dark',
+					style = 'cool',
 				})
 				require('onedark').load()
 			end
