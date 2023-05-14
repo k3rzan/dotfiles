@@ -80,8 +80,8 @@ require('lazy').setup(
 				}
 			end
 		},
-		{ 'virchau13/tree-sitter-astro', ft = "astro" },
-		{ 'airblade/vim-gitgutter' },
+		{ 'virchau13/tree-sitter-astro',   ft = "astro" },
+		{ 'christoomey/vim-tmux-navigator' },
 		{
 			'alvan/vim-closetag',
 			ft = { "typescriptreact", "javascriptreact", "javascript", "jsx",
