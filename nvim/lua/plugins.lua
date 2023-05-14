@@ -48,7 +48,12 @@ require('lazy').setup(
 		{ 'vim-airline/vim-airline-themes' },
 		{ 'nvim-telescope/telescope.nvim', tag = '0.1.1', lazy = true },
 		{ 'tpope/vim-surround',            lazy = true },
-		{ 'jiangmiao/auto-pairs' },
+		{
+			'windwp/nvim-autopairs',
+			config = function()
+				require("nvim-autopairs").setup()
+			end
+		},
 		{
 			'scrooloose/nerdtree',
 		},
