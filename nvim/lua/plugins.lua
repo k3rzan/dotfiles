@@ -96,11 +96,14 @@ require('lazy').setup(
 				require("nvim-ts-autotag").setup()
 			end
 		},
+		{ 'lambdalisue/suda.vim', lazy = true },
+		{ 'mhinz/vim-signify',    lazy = true },
+		{
+			'ThePrimeagen/harpoon',
+			config = function()
+				require("harpoon-config")
+			end
 		},
-		{ 'christoomey/vim-tmux-navigator' },
-		{ 'lambdalisue/suda.vim',          lazy = true },
-		{ 'mhinz/vim-signify',             lazy = true },
-		{ 'ThePrimeagen/harpoon',          lazy = true },
 		--Godot
 		{ 'habamax/vim-godot',             ft = "gd" },
 		--Development
