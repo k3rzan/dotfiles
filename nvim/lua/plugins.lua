@@ -83,9 +83,19 @@ require('lazy').setup(
 		{ 'virchau13/tree-sitter-astro',   ft = "astro" },
 		{ 'christoomey/vim-tmux-navigator' },
 		{
-			'alvan/vim-closetag',
-			ft = { "typescriptreact", "javascriptreact", "javascript", "jsx",
-				"tsx" }
+			"windwp/nvim-ts-autotag",
+			ft = {
+				'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx',
+				'rescript',
+				'xml',
+				'php',
+				'markdown',
+				'astro', 'glimmer', 'handlebars', 'hbs'
+			},
+			config = function()
+				require("nvim-ts-autotag").setup()
+			end
+		},
 		},
 		{ 'christoomey/vim-tmux-navigator' },
 		{ 'lambdalisue/suda.vim',          lazy = true },
