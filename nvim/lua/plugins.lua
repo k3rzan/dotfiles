@@ -105,7 +105,7 @@ require('lazy').setup(
 			end
 		},
 		--Godot
-		{ 'habamax/vim-godot',             ft = "gd" },
+		{ 'habamax/vim-godot',        ft = "gd" },
 		--Development
 		{
 			'MunifTanjim/prettier.nvim',
