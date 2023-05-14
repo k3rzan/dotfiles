@@ -1,6 +1,6 @@
+require("editor-config")
 require("plugins")
 require("lsp-config")
-require("editor-config")
 require("remaps")
 require("nerdtree-commenter")
 require("telescope-config")
