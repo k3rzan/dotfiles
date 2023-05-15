@@ -6,4 +6,7 @@ depends = []
 [nvim.files]
 nvim = "~/.config/nvim"
 
+[tmux.files]
+tmux = "~/.tmux.conf"
+
 [default.variables]
