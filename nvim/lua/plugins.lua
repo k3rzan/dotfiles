@@ -36,6 +36,16 @@ require('lazy').setup(
 		{ 'jose-elias-alvarez/null-ls.nvim', lazy = true },
 		--IDE
 		{
+			"akinsho/toggleterm.nvim",
+			config = function()
+				require("toggleterm").setup()
+			end
+
+		},
+		{
+			"tpope/vim-fugitive"
+		},
+		{
 			'numToStr/Comment.nvim',
 			config = function()
 				require('Comment').setup {
