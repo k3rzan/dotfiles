@@ -115,7 +115,10 @@ require('lazy').setup(
 			end
 		},
 		--Godot
-		{ 'habamax/vim-godot',        ft = "gd" },
+		{
+			'habamax/vim-godot',
+			ft = "gdscript"
+		},
 		--Development
 		{
 			'MunifTanjim/prettier.nvim',
@@ -190,6 +193,11 @@ require('lazy').setup(
 
 				-- (Optional) Configure lua language server for neovim
 				require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+				require('lspconfig').gdscript.setup {
+					flags = {
+						debounce_text_changes = 150,
+					}
+				}
 
 				lsp.setup()
 			end
