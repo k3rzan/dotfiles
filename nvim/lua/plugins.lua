@@ -107,7 +107,7 @@ require('lazy').setup(
 			end
 		},
 		{ 'lambdalisue/suda.vim', lazy = true },
-		{ 'mhinz/vim-signify',    lazy = true },
+		{ 'mhinz/vim-signify', },
 		{
 			'ThePrimeagen/harpoon',
 			config = function()
