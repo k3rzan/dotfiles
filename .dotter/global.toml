@@ -9,4 +9,5 @@ nvim = "~/.config/nvim"
 [tmux.files]
 tmux = "~/.tmux.conf"
 
-[default.variables]
+[zsh.files]
+zshrc = "~/.zshrc"
