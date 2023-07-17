@@ -167,7 +167,10 @@ alias zshrc='nvim ~/.zshrc'
 
 # pnpm
 export PNPM_HOME="/home/beicker/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 # pnpm end
 
 export PATH="$PATH:/usr/lib/dart/bin"

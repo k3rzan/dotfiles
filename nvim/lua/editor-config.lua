@@ -19,7 +19,6 @@ vim.opt.termguicolors = true
 vim.opt.updatetime = 50
 vim.g.mapleader = " "
 vim.opt.scrolloff = 8
-vim.opt.shell = "nu"
 
 -- vim.opt.noshowmode = true
 --vim.opt.complete=-i
