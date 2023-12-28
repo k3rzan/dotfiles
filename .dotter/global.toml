@@ -11,3 +11,6 @@ tmux = "~/.tmux.conf"
 
 [zsh.files]
 zshrc = "~/.zshrc"
+
+[gitconfig.files]
+gitconfig = "~/.gitconfig"
