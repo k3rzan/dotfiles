@@ -102,9 +102,6 @@ require('lazy').setup(
 				'markdown',
 				'astro', 'glimmer', 'handlebars', 'hbs'
 			},
-			config = function()
-				require("nvim-ts-autotag").setup()
-			end
 		},
 		{ 'lambdalisue/suda.vim', lazy = true },
 		{ 'mhinz/vim-signify', },
@@ -166,6 +163,13 @@ require('lazy').setup(
 				cmp.setup({})
 			end
 		},
+		{ 'williamboman/mason-lspconfig.nvim' },
+		{
+			'williamboman/mason.nvim',
+			build = function()
+				pcall(vim.cmd, 'MasonUpdate')
+			end,
+		},
 
 		-- LSP
 		{
@@ -174,13 +178,7 @@ require('lazy').setup(
 			event = { 'BufReadPre', 'BufNewFile' },
 			dependencies = {
 				{ 'hrsh7th/cmp-nvim-lsp' },
-				{ 'williamboman/mason-lspconfig.nvim' },
-				{
-					'williamboman/mason.nvim',
-					build = function()
-						pcall(vim.cmd, 'MasonUpdate')
-					end,
-				},
+				{ 'hrsh7th/cmp-buffer' },
 			},
 			config = function()
 				-- This is where all the LSP shenanigans will live
