@@ -32,7 +32,13 @@ require 'nvim-treesitter.configs'.setup {
 		start = { "" }
 	},
 
-	indent = { enable = true, disable = "gdscript" }
+	indent = { enable = true, disable = "gdscript" },
+
+	-- nvim-ts-autotag config
+	autotag = {
+		enable = true,
+		enable_close_on_slash = false
+	}
 }
 
 
