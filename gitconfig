@@ -21,4 +21,4 @@
 	email = beicker998@gmail.com
 
 [include]
-    path = /home/bker/.config/delta/themes.gitconfig
+    path = /home/{{username}}/.config/delta/themes.gitconfig

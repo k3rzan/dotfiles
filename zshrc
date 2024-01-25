@@ -152,6 +152,7 @@ alias v="nvim"
 alias fdir='cd $(fd --type directory | fzf)'
 alias figma='env LD_LIBRARY_PATH=/opt/figma-linux/installers/linux-unpacked/ figma-linux'
 alias checkports='sudo lsof -i -P -n | grep LISTEN'
+alias gnvim='nvim --listen godothost'
 
 
 export NVM_DIR="$HOME/.nvm"
@@ -166,7 +167,7 @@ alias zshrc='nvim ~/.zshrc'
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # pnpm
-export PNPM_HOME="/home/beicker/.local/share/pnpm"
+export PNPM_HOME="/home/{{username}}/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -175,11 +176,11 @@ esac
 
 export PATH="$PATH:/usr/lib/dart/bin"
 
-export PATH="$PATH:/home/beicker/.local/share/bob/nvim-bin"
+export PATH="$PATH:/home/{{username}}/.local/share/bob/nvim-bin"
 
 
 # fnm
-export PATH="/home/beicker/.local/share/fnm:$PATH"
+export PATH="/home/{{username}}/.local/share/fnm:$PATH"
 eval "`fnm env`"
 
 eval "$(starship init zsh)"
