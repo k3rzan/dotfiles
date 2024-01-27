@@ -12,6 +12,9 @@ tmux = "~/.tmux.conf"
 [zsh.files]
 zshrc = "~/.zshrc"
 
+[zsh.variables]
+projectsdir = "dev/"
+
 [gitconfig.files]
 gitconfig = "~/.gitconfig"
 
