@@ -152,7 +152,7 @@ alias v="nvim"
 alias fdir='cd $(fd --type directory | fzf)'
 alias figma='env LD_LIBRARY_PATH=/opt/figma-linux/installers/linux-unpacked/ figma-linux'
 alias checkports='sudo lsof -i -P -n | grep LISTEN'
-alias gnvim='nvim --listen godothost'
+alias gnvim='nvim --listen 127.0.0.1:55432 .'
 alias projects='cd $(find ~/{{projectsdir}} -maxdepth 1 -type d | fzf)'
 
 
