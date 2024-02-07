@@ -22,3 +22,7 @@
 
 [include]
     path = /home/{{username}}/.config/delta/themes.gitconfig
+
+[init]
+    defaultBranch = main
+
