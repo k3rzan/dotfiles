@@ -3,7 +3,7 @@ vim.opt.number = true
 -- vim.opt.mouse=a
 vim.opt.numberwidth = 1
 --syntax enable
-vim.opt.showcmd = true
+vim.opt.showcmd = false
 vim.opt.ruler = true
 -- vim.opt.encoding=utf-8
 vim.opt.sw = 2
@@ -29,3 +29,4 @@ vim.cmd("set conceallevel=0")
 --
 -- let g:AutoPairsMapCR=0
 --
+vim.g.skip_ts_context_commentstring_module = true

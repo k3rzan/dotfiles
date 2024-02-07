@@ -1,6 +1,10 @@
 require 'nvim-treesitter.configs'.setup {
 	-- A list of parser names, or "all"
-	ensure_installed = { "gdscript" },
+	ensure_installed = {
+		'astro', 'css', 'html', 'javascript',
+		'lua', 'tsx',
+		'typescript', 'vim', 'gdscript'
+	},
 
 	-- Install parsers synchronously (only applied to `ensure_installed`)
 	sync_install = false,
@@ -38,7 +42,10 @@ require 'nvim-treesitter.configs'.setup {
 	autotag = {
 		enable = true,
 		enable_close_on_slash = false
-	}
+	},
+	context_commentstring = {
+		enable = true,
+	},
 }
 
 

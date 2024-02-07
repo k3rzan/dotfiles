@@ -32,7 +32,6 @@ require('lazy').setup(
 			end
 		},
 
-		{ 'nvim-lua/plenary.nvim',           lazy = true },
 		{ 'jose-elias-alvarez/null-ls.nvim', lazy = true },
 		--IDE
 		{
@@ -56,8 +55,16 @@ require('lazy').setup(
 		},
 		{ 'vim-airline/vim-airline' },
 		{ 'vim-airline/vim-airline-themes' },
-		{ 'nvim-telescope/telescope.nvim', tag = '0.1.1', lazy = true },
-		{ 'tpope/vim-surround',            lazy = true },
+		{
+			'nvim-telescope/telescope.nvim',
+			tag = '0.1.5',
+			lazy = false,
+			dependencies = { 'nvim-lua/plenary.nvim' },
+			config = function()
+				require("plugins.telescope")
+			end
+		},
+		{ 'tpope/vim-surround',       lazy = true },
 		{
 			'windwp/nvim-autopairs',
 			config = function()
@@ -66,6 +73,9 @@ require('lazy').setup(
 		},
 		{
 			'scrooloose/nerdtree',
+			config = function()
+				require("plugins.nerdtree")
+			end,
 		},
 		{ 'Yggdroot/indentLine' },
 		{ 'simrat39/rust-tools.nvim', ft = "rs" },
@@ -73,21 +83,12 @@ require('lazy').setup(
 			'nvim-treesitter/nvim-treesitter',
 			dependencies = {
 				'JoosepAlviste/nvim-ts-context-commentstring',
+				config = function()
+					require("plugins.ts-context-commentstring")
+				end
 			},
 			config = function()
-				require('nvim-treesitter.configs').setup {
-					-- Install the parsers for the languages you want to comment in
-					-- Here are the supported languages:
-					ensure_installed = {
-						'astro', 'css', 'html', 'javascript',
-						'lua', 'tsx',
-						'typescript', 'vim',
-					},
-
-					context_commentstring = {
-						enable = true,
-					},
-				}
+				require("plugins.treesitter")
 			end
 		},
 		{ 'virchau13/tree-sitter-astro',   ft = "astro" },
@@ -108,7 +109,7 @@ require('lazy').setup(
 		{
 			'ThePrimeagen/harpoon',
 			config = function()
-				require("harpoon-config")
+				require("plugins.harpoon")
 			end
 		},
 		--Godot
@@ -122,7 +123,7 @@ require('lazy').setup(
 			ft = { "javascript", "javascriptreact", "typescriptreact", "typescript", "jsx", "tsx",
 				"html", "css", "md" }
 		},
-		{ 'simrat39/rust-tools.nvim', ft = { "rs" } },
+		{ 'simrat39/rust-tools.nvim',         ft = { "rs" } },
 		{
 			'VonHeikemen/lsp-zero.nvim',
 			branch = 'v2.x',
