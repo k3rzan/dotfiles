@@ -1,10 +1,7 @@
-require("editor-config")
-require("plugins")
+require("options")
+require("plugins.init")
 require("lsp-config")
 require("remaps")
-require("nerdtree-commenter")
-require("telescope-config")
-require("treesitter")
 
 -- Add this in your init.lua
 vim.cmd [[
