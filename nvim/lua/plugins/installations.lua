@@ -31,8 +31,19 @@ require('lazy').setup(
 				require('onedark').load()
 			end
 		},
-
-		{ 'jose-elias-alvarez/null-ls.nvim', lazy = true },
+		{
+			"mhartington/formatter.nvim",
+			config = function()
+				require("formatter").setup({
+					filetype = {
+						javascript = { require("formatter.filetypes.javascript").biome },
+						javascriptreact = { require("formatter.filetypes.javascriptreact").biome },
+						typescript = { require("formatter.filetypes.typescript").biome },
+						typescriptreact = { require("formatter.filetypes.typescriptreact").biome },
+					},
+				})
+			end,
+		},
 		--IDE
 		{
 			"akinsho/toggleterm.nvim",
@@ -124,11 +135,6 @@ require('lazy').setup(
 			ft = "gdscript"
 		},
 		--Development
-		{
-			'MunifTanjim/prettier.nvim',
-			ft = { "javascript", "javascriptreact", "typescriptreact", "typescript", "jsx", "tsx",
-				"html", "css", "md" }
-		},
 		{ 'simrat39/rust-tools.nvim',         ft = { "rs" } },
 		{
 			'VonHeikemen/lsp-zero.nvim',
@@ -203,6 +209,7 @@ require('lazy').setup(
 						debounce_text_changes = 150,
 					}
 				}
+				require("lspconfig").biome.setup {}
 
 				lsp.setup()
 			end
