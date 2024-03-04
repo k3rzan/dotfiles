@@ -94,7 +94,6 @@ require('lazy').setup(
 				require("plugins.nvim-tree")
 			end,
 		},
-		{ 'Yggdroot/indentLine' },
 		{ 'simrat39/rust-tools.nvim', ft = "rs" },
 		{
 			'nvim-treesitter/nvim-treesitter',
