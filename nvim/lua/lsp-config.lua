@@ -8,6 +8,10 @@ vim.api.nvim_create_autocmd("BufWritePre", { pattern = { "*.rs" }, command = "lu
 vim.api.nvim_create_autocmd("BufWritePre",
 	{ pattern = { "*.astro" }, command = "lua vim.lsp.buf.format({async = false})" })
 vim.api.nvim_create_autocmd("BufWritePre", { pattern = { "*.lua" }, command = "lua vim.lsp.buf.format({async = false})" })
+vim.keymap.set("n", "<leader>r", function()
+	vim.lsp.buf.rename()
+	print(" ")
+end, { silent = true })
 
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
