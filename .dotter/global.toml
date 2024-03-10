@@ -20,3 +20,6 @@ gitconfig = "~/.gitconfig"
 
 [gitconfig.variables]
 username = "bker"
+
+[alacritty.files]
+alacritty = "~/.alacritty.toml"
