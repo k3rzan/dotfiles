@@ -20,3 +20,9 @@ username = "bker"
 
 [alacritty.files]
 alacritty = "~/.alacritty.toml"
+
+[hyperland.files]
+hyprland = "~/.config/hypr/"
+
+[waybar.files]
+waybar = "~/.config/waybar/"
