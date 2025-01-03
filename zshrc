@@ -1,3 +1,9 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -30,10 +36,6 @@ export PATH=$PATH:$HOME/.cargo/bin
 #export ANDROID_SDK_ROOT=$HOME/Android/Sdk
 
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
-
-
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -115,11 +117,9 @@ export ZSH=$HOME/.oh-my-zsh
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	git
-	zsh-autosuggestions
 	)
 
 source $ZSH/oh-my-zsh.sh
-
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -150,41 +150,24 @@ source $ZSH/oh-my-zsh.sh
 
 # Aliases
 alias v="nvim"
-alias fdir='cd $(fd --type directory | fzf)'
-alias figma='env LD_LIBRARY_PATH=/opt/figma-linux/installers/linux-unpacked/ figma-linux'
 alias checkports='sudo lsof -i -P -n | grep LISTEN'
-alias gnvim='nvim --listen 127.0.0.1:55432 .'
-alias projects='cd $(find ~/{{projectsdir}} -maxdepth 1 -type d | fzf)'
 
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-alias luamake=/home/becko/Desktop/downloads/lua-language-server/3rd/luamake/luamake
-
 alias zshrc='nvim ~/.zshrc'
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# pnpm
-export PNPM_HOME="/home/{{username}}/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-export PATH="$PATH:/usr/lib/dart/bin"
-
-export PATH="$PATH:/home/{{username}}/.local/share/bob/nvim-bin"
-
-
-# fnm
-export PATH="/home/{{username}}/.local/share/fnm:$PATH"
-eval "`fnm env`"
 
 eval "$(starship init zsh)"
 
 bindkey '^ ' autosuggest-accept
+
+
+if uwsm check may-start; then
+    exec uwsm start hyprland.desktop
+fi
+
+notes() {
+	cd ~/Desktop/Documents/Notes && nvim .
+}

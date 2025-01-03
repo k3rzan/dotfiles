@@ -274,8 +274,6 @@ require('lazy').setup(
 					}
 				}
 				lspconfig.biome.setup {}
-				lspconfig.tsserver.setup {}
-				lspconfig.tsserver.setup {}
 				lspconfig.rust_analyzer.setup {}
 				lspconfig.nil_ls.setup {}
 				lspconfig.clangd.setup {}

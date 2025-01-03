@@ -22,7 +22,7 @@ style = "Regular"
 startup_mode = "Maximized"
 
 [shell]
-program = "/etc/profiles/per-user/bkerz/bin/zsh"
+program = "/usr/bin/zsh"
 
 [env]
 TERM="tmux-256color"
