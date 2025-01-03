@@ -21,7 +21,7 @@ style = "Regular"
 [window]
 startup_mode = "Maximized"
 
-[shell]
+[terminal.shell]
 program = "/usr/bin/zsh"
 
 [env]
