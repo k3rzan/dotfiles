@@ -55,29 +55,72 @@ require('lazy').setup(
 				require('onedark').load()
 			end
 		},
-		{
-			"mhartington/formatter.nvim",
-			config = function()
-				require("formatter").setup({
-					filetype = {
-						javascript = { require("formatter.filetypes.javascript").biome },
-						javascriptreact = { require("formatter.filetypes.javascriptreact").biome },
-						typescript = { require("formatter.filetypes.typescript").biome },
-						typescriptreact = { require("formatter.filetypes.typescriptreact").biome },
-					},
-				})
-			end,
-		},
 		--IDE
 		{
 			"rcarriga/nvim-dap-ui",
 			config = function()
 				local dap, dapui = require("dap"), require("dapui")
 				dap.adapters.godot = {
-					type = "server",
-					host = '127.0.0.1',
+					type = "executable",
 					port = 6006,
 				}
+
+				dap.adapters.lldb = {
+					type = 'executable',
+					command = 'lldb',
+					name = "lldb"
+				}
+				dap.adapters.codelldb = {
+					type = 'server',
+					port = "${port}",
+					executable = {
+						command = 'codelldb',
+						args = { "--port", "${port}" },
+					}
+				}
+
+				dap.adapters.gdb = {
+					type = "executable",
+					command = "gdb",
+					args = { "--interpreter=dap" },
+				}
+				dap.configurations.zig = {
+					{
+						name = "Launch Zig Program",
+						type = "lldb",
+						request = "launch",
+						-- program = '${workspaceFolder}/zig-out/bin/${workspaceFolderBasename}',
+						program = function()
+							return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+						end,
+						cwd = '${workspaceFolder}',
+						stopOnEntry = false,
+						args = {},
+					}
+				}
+				-- dap.configurations.zig = {
+				-- 	{
+				-- 		name = "Launch Zig Program",
+				-- 		type = "gdb",
+				-- 		request = "launch",
+				-- 		program = function()
+				-- 			return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+				-- 		end,
+				-- 		cwd = "${workspaceFolder}",
+				-- 		stopAtEntry = true,  -- Stop at program entry
+				-- 	}
+				-- }
+				-- dap.configurations.zig = {
+				-- 	{
+				-- 		name = "Launch file",
+				-- 		type = "codelldb",
+				-- 		request = "launch",
+				-- 		program = "${workspaceFolder}/zig-out/bin/main",
+				-- 		cwd = "${workspaceFolder}",
+				-- 		stopOnEntry = false,
+				-- 		args = {},
+				-- 	},
+				-- }
 				dap.configurations.gdscript = {
 					{
 						type = "godot",
@@ -184,8 +227,24 @@ require('lazy').setup(
 				'astro', 'glimmer', 'handlebars', 'hbs'
 			},
 		},
-		{ 'lambdalisue/suda.vim', lazy = true },
-		{ 'mhinz/vim-signify', },
+		{ 'lambdalisue/suda.vim',     lazy = true },
+		{
+			'lewis6991/gitsigns.nvim',
+			config = function()
+				require("gitsigns").setup()
+			end
+		},
+		{
+			"NeogitOrg/neogit",
+			dependencies = {
+				"nvim-lua/plenary.nvim", -- required
+				"sindrets/diffview.nvim", -- optional - Diff integration
+
+				-- Only one of these is needed.
+				"nvim-telescope/telescope.nvim", -- optional
+			},
+			config = true
+		},
 		{
 			'ThePrimeagen/harpoon',
 			config = function()
@@ -273,9 +332,12 @@ require('lazy').setup(
 						debounce_text_changes = 150,
 					}
 				}
-				lspconfig.biome.setup {}
-				lspconfig.rust_analyzer.setup {}
+				-- lspconfig.biome.setup {}
+				lspconfig.luals.setup {}
 				lspconfig.nil_ls.setup {}
+				lspconfig.zls.setup {
+					filetypes = { "zig" },
+				}
 				lspconfig.clangd.setup {}
 
 				lsp.setup()
