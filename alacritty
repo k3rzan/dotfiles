@@ -1,6 +1,6 @@
 
 [font]
-size = 14.0
+size = 18.0
 
 [font.bold]
 family = "DejaVuSansM Nerd Font Mono"
@@ -20,9 +20,10 @@ style = "Regular"
 
 [window]
 startup_mode = "Maximized"
+blur = true
 
 [terminal.shell]
 program = "/usr/bin/zsh"
 
 [env]
-TERM="tmux-256color"
+TERM="xterm-256color"

@@ -21,7 +21,10 @@ username = "bker"
 [alacritty.files]
 alacritty = "~/.alacritty.toml"
 
-[hyperland.files]
+[tmuxinator.files]
+zig-test = "~/.config/tmuxinator/zig-test.yml"
+
+[hyprland.files]
 hyprland = "~/.config/hypr/"
 
 [waybar.files]

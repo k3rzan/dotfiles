@@ -18,6 +18,7 @@ export ZSH="$HOME/.oh-my-zsh"
 #export DENO_INSTALL="/home/becko/.deno"
 #export PATH="$DENO_INSTALL/bin:$PATH"
 export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:/opt/cuda/bin
 #export FZF_DEFAULT_COMMAND='fd --type f '
 #export DOTNET_ROOT=$HOME/dotnet
 #export PATH=$PATH:/usr/bin/fzf
@@ -117,7 +118,7 @@ export PATH=$PATH:$HOME/.cargo/bin
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	git
-	)
+)
 
 source $ZSH/oh-my-zsh.sh
 # User configuration
@@ -146,11 +147,14 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+	
 
 
 # Aliases
 alias v="nvim"
 alias checkports='sudo lsof -i -P -n | grep LISTEN'
+# alias gpr='git push origin $(rev-parse --abbrev-ref HEAD)'
+# alias gpl='git pull origin $(rev-parse --abbrev-ref HEAD)'
 
 
 export NVM_DIR="$HOME/.nvm"
@@ -160,6 +164,7 @@ export NVM_DIR="$HOME/.nvm"
 alias zshrc='nvim ~/.zshrc'
 
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 
 bindkey '^ ' autosuggest-accept
 
@@ -171,3 +176,8 @@ fi
 notes() {
 	cd ~/Desktop/Documents/Notes && nvim .
 }
+
+screenplay() {
+	cd ~/Desktop/Videos/Youtube && nvim .
+}
+

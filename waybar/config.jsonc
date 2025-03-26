@@ -2,7 +2,7 @@
   "position": "top",
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["hyprland/window"],
-  "modules-right": ["network", "pulseaudio", "clock","custom/power"],
+  "modules-right": ["hyprland/language","network", "pulseaudio", "clock","custom/power"],
 	"hyprland/window": {
 		"format": "{title}",
 		"separate-outputs": true
