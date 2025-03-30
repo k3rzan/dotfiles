@@ -333,7 +333,6 @@ require('lazy').setup(
 					}
 				}
 				-- lspconfig.biome.setup {}
-				lspconfig.luals.setup {}
 				lspconfig.nil_ls.setup {}
 				lspconfig.zls.setup {
 					filetypes = { "zig" },
