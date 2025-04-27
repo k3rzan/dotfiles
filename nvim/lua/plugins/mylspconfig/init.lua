@@ -40,7 +40,10 @@ M.setup = function()
 			-- end
 			-- map("<leader>gd", vim.lsp.buf.definition, "defs")
 			-- map("K", vim.lsp.buf.hover, "Hover")
-			-- map("<leader>ca", vim.lsp.buf.code_action, "code actions")
+			vim.keymap.set("n", "<leader>ca",
+				vim.lsp.buf.code_action, { buffer = event.buf, desc = "LSP: Code Actions" })
+			vim.keymap.set("v", "<leader>ca",
+				vim.lsp.buf.code_action, { buffer = event.buf, desc = "LSP: Code Actions" })
 			-- -- map("<leader>rn", rename, "rename")
 			-- map("gr", vim.lsp.buf.references, "Goto References ")
 			-- map("gd", vim.lsp.buf.definition, "Goto Definition")
@@ -50,6 +53,10 @@ M.setup = function()
 			-- map("<leader>r", vim.lsp.buf.rename, "Rename")
 			-- map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
 			-- map("gD", vim.lsp.buf.declaration, "Goto Declaration")
+			vim.keymap.set("n", "<leader>k", function()
+				vim.diagnostic.open_float({ bufnr = event.buf, scope = 'cursor', border = "rounded" })
+			end, { buffer = event.buf, desc = "LSP: " .. "defs" })
+			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = event.buf, desc = "LSP: " .. "defs" })
 			vim.keymap.set("n", "K", hover, { buffer = event.buf, desc = "LSP: " .. "defs" })
 
 			-- local client = vim.lsp.get_client_by_id(event.data.client_id)
