@@ -181,3 +181,10 @@ screenplay() {
 	cd ~/Desktop/Videos/Youtube && nvim .
 }
 
+
+# bun completions
+[ -s "/home/bkerz/.bun/_bun" ] && source "/home/bkerz/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

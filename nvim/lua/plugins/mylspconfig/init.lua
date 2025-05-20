@@ -9,13 +9,36 @@ function zig_setup()
 	vim.lsp.enable({ "zls" })
 end
 
+function ts_setup()
+	vim.lsp.config['tsserver'] = {
+		cmd = { 'typescript-language-server', '--stdio' },
+		filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+		init_options = {
+			hostInfo = "neovim"
+		},
+	}
+	vim.lsp.enable({ "tsserver" })
+end
+
 -- setup lua lsp
 function lua_setup()
 	vim.lsp.config['luals'] = {
 		cmd = { 'lua-language-server' },
 		filetypes = { 'lua' },
 		settings = {
-			Lua = {}
+			Lua = {
+				workspace = {
+					library = vim.api.nvim_get_runtime_file("lua", true),
+				},
+				globals = { "vim" },
+				runtime = {
+					version = "luaJIT",
+					path = {
+						"lua/?.lua",
+						"lua/?/init.lua",
+					}
+				}
+			},
 		}
 	}
 	vim.lsp.enable({ "luals" })
@@ -54,7 +77,7 @@ M.setup = function()
 			-- map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
 			-- map("gD", vim.lsp.buf.declaration, "Goto Declaration")
 			vim.keymap.set("n", "<leader>k", function()
-				vim.diagnostic.open_float({ bufnr = event.buf, scope = 'cursor', border = "rounded" })
+				vim.diagnostic.open_float({ bufnr = event.buf, scope = 'cursor', border = "rounded", source = "if_many" })
 			end, { buffer = event.buf, desc = "LSP: " .. "defs" })
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = event.buf, desc = "LSP: " .. "defs" })
 			vim.keymap.set("n", "K", hover, { buffer = event.buf, desc = "LSP: " .. "defs" })
@@ -81,6 +104,7 @@ M.setup = function()
 	vim.lsp.config("*", {
 		capabilities = capa
 	})
+	ts_setup()
 	lua_setup()
 	zig_setup()
 end

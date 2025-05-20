@@ -267,9 +267,13 @@ require('lazy').setup(
 			dependencies = {
 				require("plugins.blink"),
 				require("plugins.colorful"),
-			}
-
-
+			},
 		},
-
+		{
+			dir = "~/.config/nvim/lua/plugins/search-replace/",
+			name = "search-replace",
+			config = function()
+				require("plugins.search-replace").setup()
+			end,
+		},
 	})
