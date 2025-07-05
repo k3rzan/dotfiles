@@ -60,44 +60,87 @@ require('lazy').setup(
 			"rcarriga/nvim-dap-ui",
 			config = function()
 				local dap, dapui = require("dap"), require("dapui")
+				dap.adapters.codelldb = {
+					type = "executable",
+					command = "/home/bkerz/Downloads/codelldb/extension/adapter/codelldb",
+				}
+				dap.adapters.gdb = {
+					type = "executable",
+					command = "gdb",
+					args = { "--interpreter=dap", "--eval-command", "set print pretty on" }
+				}
 				dap.adapters.godot = {
 					type = "executable",
 					port = 6006,
 				}
-
-				dap.adapters.lldb = {
-					type = 'executable',
-					command = 'lldb',
-					name = "lldb"
+				dap.configurations.zig = { {
+					name = "Launch",
+					type = "codelldb",
+					request = "launch",
+					program = function()
+						return vim.fn.input('Name of the executable: ', vim.fn.getcwd() .. '/zig-out/bin', 'file')
+					end,
+					cwd = "${workspaceFolder}",
+					stopAtBeginningOfMainSubprogram = false,
+				},
 				}
-				dap.adapters.codelldb = {
-					type = 'server',
-					port = "${port}",
-					executable = {
-						command = 'codelldb',
-						args = { "--port", "${port}" },
-					}
-				}
-
-				dap.adapters.gdb = {
-					type = "executable",
-					command = "gdb",
-					args = { "--interpreter=dap" },
-				}
-				dap.configurations.zig = {
-					{
-						name = "Launch Zig Program",
-						type = "lldb",
-						request = "launch",
-						-- program = '${workspaceFolder}/zig-out/bin/${workspaceFolderBasename}',
-						program = function()
-							return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-						end,
-						cwd = '${workspaceFolder}',
-						stopOnEntry = false,
-						args = {},
-					}
-				}
+				-- {
+				-- 	name = "Select and attach to process",
+				-- 	type = "gdb",
+				-- 	request = "attach",
+				-- 	program = function()
+				-- 		return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+				-- 	end,
+				-- 	pid = function()
+				-- 		local name = vim.fn.input('Executable name (filter): ')
+				-- 		return require("dap.utils").pick_process({ filter = name })
+				-- 	end,
+				-- 	cwd = '${workspaceFolder}'
+				-- },
+				-- {
+				-- 	name = 'Attach to gdbserver :1234',
+				-- 	type = 'gdb',
+				-- 	request = 'attach',
+				-- 	target = 'localhost:1234',
+				-- 	program = function()
+				-- 		return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+				-- 	end,
+				-- 	cwd = '${workspaceFolder}'
+				-- } }
+				--
+				-- dap.adapters.lldb = {
+				-- 	type = 'executable',
+				-- 	command = 'lldb',
+				-- 	name = "lldb"
+				-- }
+				-- dap.adapters.codelldb = {
+				-- 	type = 'server',
+				-- 	port = "${port}",
+				-- 	executable = {
+				-- 		command = 'codelldb',
+				-- 		args = { "--port", "${port}" },
+				-- 	}
+				-- }
+				--
+				-- -- dap.adapters.gdb = {
+				-- -- 	type = "executable",
+				-- -- 	command = "gdb",
+				-- -- 	args = { "--interpreter=dap" },
+				-- -- }
+				-- dap.configurations.zig = {
+				-- 	{
+				-- 		name = "Launch Zig Program",
+				-- 		type = "lldb",
+				-- 		request = "launch",
+				-- 		-- program = '${workspaceFolder}/zig-out/bin/${workspaceFolderBasename}',
+				-- 		program = function()
+				-- 			return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+				-- 		end,
+				-- 		cwd = '${workspaceFolder}',
+				-- 		stopOnEntry = false,
+				-- 		args = {},
+				-- 	}
+				-- }
 				-- dap.configurations.zig = {
 				-- 	{
 				-- 		name = "Launch Zig Program",
@@ -121,16 +164,16 @@ require('lazy').setup(
 				-- 		args = {},
 				-- 	},
 				-- }
-				dap.configurations.gdscript = {
-					{
-						type = "godot",
-						request = "launch",
-						name = "Launch scene",
-						project = "${workspaceFolder}",
-						scene = "${workspaceFolder}/addons/gut/GutScene.tscn",
-						launch_scene = true,
-					}
-				}
+				-- dap.configurations.gdscript = {
+				-- 	{
+				-- 		type = "godot",
+				-- 		request = "launch",
+				-- 		name = "Launch scene",
+				-- 		project = "${workspaceFolder}",
+				-- 		scene = "${workspaceFolder}/addons/gut/GutScene.tscn",
+				-- 		launch_scene = true,
+				-- 	}
+				-- }
 				dapui.setup()
 				dap.listeners.before.attach.dapui_config = function()
 					dapui.open()
@@ -214,8 +257,7 @@ require('lazy').setup(
 				require("plugins.treesitter")
 			end
 		},
-		{ 'virchau13/tree-sitter-astro',   ft = "astro" },
-		{ 'christoomey/vim-tmux-navigator' },
+		{ 'virchau13/tree-sitter-astro', ft = "astro" },
 		{
 			"windwp/nvim-ts-autotag",
 			ft = {
@@ -227,7 +269,7 @@ require('lazy').setup(
 				'astro', 'glimmer', 'handlebars', 'hbs'
 			},
 		},
-		{ 'lambdalisue/suda.vim',     lazy = true },
+		{ 'lambdalisue/suda.vim',        lazy = true },
 		{
 			'lewis6991/gitsigns.nvim',
 			config = function()
@@ -267,6 +309,39 @@ require('lazy').setup(
 			dependencies = {
 				require("plugins.blink"),
 				require("plugins.colorful"),
+			},
+		},
+		{
+			'aaronik/treewalker.nvim',
+
+			-- The following options are the defaults.
+			-- Treewalker aims for sane defaults, so these are each individually optional,
+			-- and setup() does not need to be called, so the whole opts block is optional as well.
+			opts = {
+				-- Whether to briefly highlight the node after jumping to it
+				highlight = true,
+
+				-- How long should above highlight last (in ms)
+				highlight_duration = 250,
+
+				-- The color of the above highlight. Must be a valid vim highlight group.
+				-- (see :h highlight-group for options)
+				highlight_group = 'CursorLine',
+
+				-- Whether the plugin adds movements to the jumplist -- true | false | 'left'
+				--  true: All movements more than 1 line are added to the jumplist. This is the default,
+				--        and is meant to cover most use cases. It's modeled on how { and } natively add
+				--        to the jumplist.
+				--  false: Treewalker does not add to the jumplist at all
+				--  "left": Treewalker only adds :Treewalker Left to the jumplist. This is usually the most
+				--          likely one to be confusing, so it has its own mode.
+				jumplist = true,
+			}
+		},
+		{
+			'nvim-telescope/telescope-project.nvim',
+			dependencies = {
+				'nvim-telescope/telescope.nvim',
 			},
 		},
 		{

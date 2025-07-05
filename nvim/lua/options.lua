@@ -53,6 +53,12 @@ vim.g.mapleader = " "
 vim.opt.scrolloff = 8
 vim.o.cursorline = true
 
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = nil
+vim.o.foldlevelstart = 99
+vim.o.foldlevel = 99
+vim.o.foldenable = true
+
 vim.cmd("set conceallevel=0")
 -- vim.opt.noshowmode = true
 --vim.opt.complete=-i

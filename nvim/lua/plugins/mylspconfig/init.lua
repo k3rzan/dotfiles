@@ -1,5 +1,14 @@
 local M = {}
 
+
+function c_setup()
+	vim.lsp.config['clangd'] = {
+		cmd = { 'clangd' },
+		filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
+	}
+	vim.lsp.enable({ "clangd" })
+end
+
 function zig_setup()
 	vim.lsp.config['zls'] = {
 		cmd = { 'zls' },
@@ -98,6 +107,13 @@ M.setup = function()
 					vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = event2.buf })
 				end,
 			})
+
+
+			-- add folding support
+			if client:supports_method('textDocument/foldingRange') then
+				local win = vim.api.nvim_get_current_win()
+				vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
+			end
 		end
 	})
 	local capa = require('blink.cmp').get_lsp_capabilities()
@@ -107,6 +123,7 @@ M.setup = function()
 	ts_setup()
 	lua_setup()
 	zig_setup()
+	c_setup()
 end
 
 return M
