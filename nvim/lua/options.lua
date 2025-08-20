@@ -6,7 +6,7 @@ function update_statusline()
 			if stdout ~= "" then
 				branch = stdout and " " .. stdout .. " |" or ""
 			end
-			vim.o.statusline = " %f %{&modified? '●':''} %=" .. branch .. " col %c | %L lines | %%%p "
+			vim.opt_local.statusline = " %f %{&modified? '●':''} %=" .. branch .. " col %c | %L lines | %%%p "
 			vim.cmd("redrawstatus")
 		end
 		)
@@ -20,7 +20,8 @@ vim.api.nvim_create_autocmd(
 			local filename = vim.fn.bufname("%")
 			local buftype = vim.bo.buftype
 			-- local is_file_valid = vim.fn.filereadable(filename)
-			if filename == "" or buftype ~= "" then
+			if filename == "" or buftype == "nofile" then
+				vim.opt_local.statusline = filename
 			else
 				update_statusline()
 			end
@@ -33,7 +34,7 @@ vim.opt.number = true
 -- vim.opt.mouse=a
 vim.opt.numberwidth = 1
 --syntax enable
-vim.opt.showcmd = false
+vim.opt.showcmd = true
 vim.opt.ruler = true
 -- vim.opt.encoding=utf-8
 vim.opt.sw = 2
