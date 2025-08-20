@@ -310,14 +310,14 @@ require('lazy').setup(
 				vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
 				vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
 			end
+
+
 		},
 		--Godot
 		{
 			'habamax/vim-godot',
 			ft = "gdscript"
 		},
-		--Development
-		{ 'simrat39/rust-tools.nvim', ft = { "rs" } },
 		{
 			dir = "~/.config/nvim/lua/plugins/mylspconfig/",
 			name = "mylspconfig",
@@ -325,8 +325,8 @@ require('lazy').setup(
 				require("plugins.mylspconfig").setup()
 			end,
 			dependencies = {
-				require("plugins.blink"),
 				require("plugins.colorful"),
+				require("plugins.blink"),
 			},
 		},
 		{
