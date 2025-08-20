@@ -6,28 +6,26 @@ function update_statusline()
 			if stdout ~= "" then
 				branch = stdout and " " .. stdout .. " |" or ""
 			end
-			vim.o.statusline = " %f %{&modified?'●':''} %=" .. branch .. " col %c | %L lines | %%%p "
+			vim.o.statusline = " %f %{&modified? '●':''} %=" .. branch .. " col %c | %L lines | %%%p "
 			vim.cmd("redrawstatus")
 		end
 		)
 	end)
 end
 
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "BufWritePost", "ShellCmdPost", "FocusGained", "UIEnter" }, {
-	pattern = "*",
-	callback = function()
-		local filename = vim.fn.bufname("%")
-		local buftype = vim.bo.buftype
-		-- local is_file_valid = vim.fn.filereadable(filename)
-		if filename == "" or buftype ~= "" then
-			vim.schedule(function()
-				vim.opt_local.statusline = " "
-			end)
-		else
-			update_statusline()
-		end
-	end,
-})
+vim.api.nvim_create_autocmd(
+	{ "BufEnter", "BufWinEnter", "BufWritePost", "ShellCmdPost", "FocusGained", "UIEnter" }, {
+		pattern = "*",
+		callback = function()
+			local filename = vim.fn.bufname("%")
+			local buftype = vim.bo.buftype
+			-- local is_file_valid = vim.fn.filereadable(filename)
+			if filename == "" or buftype ~= "" then
+			else
+				update_statusline()
+			end
+		end,
+	})
 
 vim.o.statusline = " %f %{&modified?'●':''}%=at %c | %L lines | %%%p "
 -- vim.opt.nocompatible = true
